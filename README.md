@@ -11,7 +11,7 @@ Puedes descargar el proyecto de cualquiera de estas formas:
 
 ```bash
 git clone <URL-del-repositorio>
-cd Prueba-semana-2
+cd PruebaSemana2
 ```
 
 ## Ejecutar localmente
