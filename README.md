@@ -32,6 +32,6 @@ Bootstrap se carga desde un CDN, por lo que se requiere conexión a internet par
 - `pages/`: páginas HTML independientes para las siete preguntas.
 - `css/`: hojas de estilo globales y específicas.
 - `js/`: scripts JavaScript externos.
-- `data/`: ubicación prevista para el archivo `datos_prueba.xlsx`.
+- `data/`: archivo Excel `Plan_de_Pruebas_Oferta-Especificacion_Gherkin.xlsx`.
 
-Cuando el archivo Excel esté disponible, guárdalo como `data/datos_prueba.xlsx` para que funcione el botón de descarga de la página principal.
+El botón de la página principal descarga el plan de pruebas desde esta carpeta.
