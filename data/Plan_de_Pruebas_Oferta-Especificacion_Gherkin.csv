@@ -1,0 +1,84 @@
+PLAN DE PRUEBAS OFERTA-ESPECIFICACIÓN - FORMATO GHERKIN,,,,
+,,,,
+SMOKE TEST,,,,
+ID,Tipo,Escenario,Criterio,Prioridad
+SMK-01,Smoke,Crear una oferta con datos mínimos válidos,"Dado que se dispone de los datos mínimos válidos de una oferta
+Cuando se registra la oferta
+Entonces la oferta se registra con un identificador único
+Y queda disponible para consulta",Crítica
+SMK-02,Smoke,Consultar una oferta existente por su identificador,"Dado que existe una oferta registrada
+Cuando se consulta la oferta mediante su identificador
+Entonces se devuelve la oferta correcta
+Y se muestran sus datos almacenados",Crítica
+SMK-03,Smoke / Integración,Asociar una especificación a una oferta existente,"Dado que existe una oferta registrada sin especificación asociada
+Cuando se registra una especificación para la oferta
+Entonces la especificación se registra correctamente
+Y queda asociada a la oferta",Crítica
+,,,,
+PRUEBAS FUNCIONALES,,,,
+ID,Tipo,Escenario,Criterio,Prioridad
+FUN-01,Funcional,Consultar el listado de ofertas,"Dado que existen ofertas registradas
+Cuando se consulta el listado de ofertas
+Entonces se devuelven las ofertas registradas",Alta
+FUN-02,Funcional,Consultar una oferta con su especificación asociada,"Dado que existe una oferta con una especificación asociada
+Cuando se consulta la oferta
+Entonces se devuelve la oferta
+Y se incluye la especificación correcta",Alta
+FUN-03,Funcional,Crear una oferta con todos los datos válidos,"Dado que se dispone de todos los datos válidos de una oferta
+Cuando se registra la oferta
+Entonces la oferta se registra correctamente
+Y conserva todos los datos enviados",Alta
+FUN-04,Funcional,Eliminar una oferta existente,"Dado que existe una oferta registrada
+Cuando se elimina la oferta
+Entonces la oferta deja de estar disponible para consulta",Alta
+,,,,
+PRUEBAS NEGATIVAS Y DE LÍMITE,,,,
+ID,Tipo,Escenario,Criterio,Prioridad
+NEG-01,Funcional negativa,Crear una oferta sin título,"Dado que los datos de la oferta no incluyen el título
+Cuando se intenta registrar la oferta
+Entonces la operación se rechaza
+Y la oferta no se persiste",Alta
+NEG-02,Funcional negativa,Crear una oferta sin estado,"Dado que los datos de la oferta no incluyen el estado
+Cuando se intenta registrar la oferta
+Entonces la operación se rechaza
+Y la oferta no se persiste",Alta
+NEG-03,Funcional negativa,Consultar una oferta con identificador inexistente,"Dado que el identificador no corresponde a una oferta registrada
+Cuando se consulta la oferta mediante ese identificador
+Entonces el sistema informa que la oferta no existe",Media
+NEG-04,Funcional negativa,Asociar una especificación a una oferta inexistente,"Dado que la oferta indicada no existe
+Cuando se intenta asociar una especificación
+Entonces la operación se rechaza
+Y la especificación no se persiste",Alta
+LIM-01,Límite,Crear una oferta con título en la longitud máxima permitida,"Dado que el título tiene la longitud máxima permitida
+Cuando se registra la oferta
+Entonces la oferta se registra correctamente",Media
+LIM-02,Límite,Crear una oferta con título sobre la longitud máxima permitida,"Dado que el título supera la longitud máxima permitida
+Cuando se intenta registrar la oferta
+Entonces la operación se rechaza
+Y la oferta no se persiste",Media
+LIM-03,Límite / Funcional negativa,Crear una oferta con campos obligatorios vacíos,"Dado que los campos obligatorios de la oferta se envían como cadenas vacías
+Cuando se intenta registrar la oferta
+Entonces la operación se rechaza
+Y la oferta no se persiste",Alta
+LIM-04,Límite / Funcional negativa,Crear una oferta con campos obligatorios nulos,"Dado que los campos obligatorios de la oferta se envían con valor nulo
+Cuando se intenta registrar la oferta
+Entonces la operación se rechaza
+Y la oferta no se persiste",Alta
+,,,,
+PRUEBAS DE INTEGRACIÓN E INTEGRIDAD,,,,
+ID,Tipo,Escenario,Criterio,Prioridad
+INT-01,Integración,Consultar una oferta y verificar su especificación asociada,"Dado que existe una oferta con una especificación asociada
+Cuando se consulta la oferta
+Entonces la relación entre Oferta y Especificación se conserva correctamente",Crítica
+INT-02,Integridad,Crear una especificación para una oferta que ya posee una,"Dado que una oferta ya posee una especificación asociada
+Cuando se intenta registrar una nueva especificación para la misma oferta
+Entonces la operación se rechaza
+Y se mantiene una sola especificación por oferta",Alta
+INT-03,Integridad,Verificar que una especificación no quede asociada a otra oferta,"Dado que una especificación está asociada a una oferta
+Cuando se consulta la relación registrada
+Entonces la especificación permanece asociada únicamente a la oferta correcta",Alta
+INT-04,Integración / Integridad,Eliminar una oferta con una especificación asociada,"Dado que existe una oferta con una especificación asociada
+Cuando se solicita eliminar la oferta
+Entonces la oferta se elimina correctamente
+Y la especificación asociada se elimina en cascada
+Y no quedan registros huérfanos en especificaciones",Crítica
